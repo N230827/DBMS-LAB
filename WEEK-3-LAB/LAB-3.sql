@@ -35,7 +35,7 @@ SELECT * FROM certificate_application WHERE application_status='pending';
 SELECT * FROM citizen where village_name='Ramapuram';
 SELECT * FROM certificate_application where year(application_date)=2026; 
 SELECT * FROM certificate_application order by application_date desc;
-select * from certificate_application where office_id IN (SELECT office_id from panchayat_office where office_name='Lakshmipuram Gram Panchayat'); -- IN MANUAL WE HAVE NUZVID HERE
+select * from cert ificate_application where office_id IN (SELECT office_id from panchayat_office where office_name='Lakshmipuram Gram Panchayat'); -- IN MANUAL WE HAVE NUZVID HERE
 SELECT full_name from citizen where citizen_id IN (select citizen_id from  certificate_application where certificate__type_id =(7));
 
 -- SET OPERATIONS
@@ -104,7 +104,7 @@ AND citizen_id NOT IN (
         WHERE certificate_name = 'Residence Certificate'
     )
 );
-SELECT *
+SELECT application_id
 FROM Certificate_Application
 WHERE YEAR(application_date) = 2026
   AND application_id NOT IN (
@@ -116,7 +116,7 @@ WHERE YEAR(application_date) = 2026
 INSERT INTO certificate_application 
 (citizen_id, application_id, office_id, application_date,purpose, application_status)
 VALUES
-(9999, 1001, 1, '2026-08-03',"", 'Pending');
+(9999, 1001, 1, '2026-08-03'," ",'Pending');
 
 DELETE FROM Citizen
 WHERE citizen_id = 101;
@@ -173,15 +173,6 @@ WHERE EXISTS
     WHERE ca.citizen_id = c.citizen_id
 );
 SELECT *
-FROM Citizen
-WHERE EXISTS
-(
-    SELECT *
-    FROM Certificate_Application
-    WHERE Certificate_Application.citizen_id = Citizen.citizen_id
-);
-
-SELECT *
 FROM certificate_type
 WHERE EXISTS
 (
@@ -228,7 +219,7 @@ WHERE processing_days > ANY
     )
 );
 
-SELECT *, 
+SELECT full_name, 
        TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age
 FROM Citizen
 WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) > ALL

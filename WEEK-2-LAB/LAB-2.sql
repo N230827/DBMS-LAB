@@ -1,6 +1,6 @@
 use gram_panchayat_db;
 SHOW tables;
-
+SELECT * FROM certificate_type;
 -- BULITIN STRING FUNCTIONS
 DESC citizen;
 SELECT UPPER(full_name) FROM citizen;
@@ -11,7 +11,7 @@ SELECT concat(full_name," - ",village_name) FROM citizen;
 select replace(certificate_name,'Certificate','Cert.') from certificate_type;
 SELECT TRIM(certificate_name) FROM certificate_type;
 SELECT SUBSTRING(full_name,1,LOCATE(' ' ,full_name)-1) AS First_name FROM citizen;
-select CONCAT("Citizen : ",full_name, '\n' 'Village : ',village_name) from citizen;
+select CONCAT("Citizen : ",full_name, '\n' ,"Village :",  village_name) as "citizeen and village_name" from citizen;
 select * from certificate_application where left(reference_number,6)='GP2026';
 
 -- BUILT IN NUMERICAL FUNCTIONS
@@ -23,7 +23,7 @@ SELECT application_fee, ROUND(application_fee,1) from certificate_type;
 SELECT application_fee, ceil(application_fee),floor(application_fee) from certificate_type;
 SELECT FLOOR(RAND()*100)+1 as Random_Number;
 select processing_days, sqrt(processing_days) from certificate_type;
-select certificate_name,processing_days, abs(processing_days*2) from certificate_type;
+select certificate_name, abs(processing_days*2) from certificate_type;
 
 -- DATE FUNCTIONS
 select curdate() as "Today's_date";
