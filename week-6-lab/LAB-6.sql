@@ -83,6 +83,7 @@ JOIN certificate_type ct
 ON ca.certificate_id = ct.certificate_type_id
 WHERE ca.application_date = (SELECT MAX(application_date) FROM certificate_application);
 
+-- LEVEL-3
 select ct.certificate_name
 FROM certificate_type ct 
 JOIN certificate_application ca 
