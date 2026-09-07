@@ -3,18 +3,19 @@ USE gram_panchayat_db;
 CREATE VIEW all_certificate_applications as
 select application_id,application_date,purpose
 from certificate_application;
+select * from all_certificate_applications;
 
 CREATE VIEW Citizens_applications_status as
 select c.citizen_id,ca.application_id,ca.application_status
 from citizen c
 join certificate_application ca
 on c.citizen_id=ca.citizen_id;
+select * from Citizens_applications_status;
 
 CREATE VIEW Approved_Applications AS
 select application_id,application_status
 from certificate_application
 WHERE application_status='Approved';
-
 select * from Approved_applications;
 
 SHOW FULL TABLES 
@@ -26,12 +27,14 @@ select ct.certificate_name,ca.application_date
 from certificate_type ct
 join certificate_application ca
 on ct.certificate_type_id = ca.certificate_id;
+select * from Name_Date;
 
 CREATE VIEW Citizenname_applicationstatus as
 select c.full_name,ca.application_status
 from citizen c
 join certificate_application ca
 on c.citizen_id = ca.citizen_id;
+select * from citizenname_applicationstatus;
 
 CREATE VIEW applications_submitted_office AS
 SELECT po.office_id,po.office_name,COUNT(ca.application_id) AS total_applications
@@ -55,10 +58,11 @@ FROM certificate_application ca
 JOIN certificate_type ct
 ON ca.certificate_id = ct.certificate_type_id
 WHERE ca.application_status = 'Pending';
+select * from pending_applications;
 
 SELECT certificate_name, application_date
 FROM Name_Date
-WHERE application_date >= '2026-07-05';
+WHERE application_date = '2026-07-05';
 
 SHOW CREATE VIEW approved_applications;
 

@@ -74,7 +74,7 @@ GROUP BY po.office_id, po.office_name;
 SELECT certificate_id, COUNT(*) AS total_applications
 FROM certificate_application
 GROUP BY certificate_id
-HAVING COUNT(*) > 2;
+HAVING COUNT(*) >= 2;
 
 SELECT office_id, COUNT(*) AS total_applications
 FROM certificate_application
@@ -143,7 +143,7 @@ LIMIT 1;
 SELECT certificate_id, COUNT(*) AS total_applications
 FROM certificate_application
 GROUP BY certificate_id
-HAVING COUNT(*) > 2;
+HAVING COUNT(*) >= 2;
 
 SELECT office_id, COUNT(*) AS total_applications
 FROM certificate_application

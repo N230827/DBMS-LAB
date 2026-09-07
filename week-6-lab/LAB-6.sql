@@ -21,30 +21,30 @@ WHERE application_date=(
 			SELECT MIN(application_date)
             from certificate_application);
             
-SELECT * FROM CITIZEN C
+SELECT full_name FROM CITIZEN C
 WHERE CITIZEN_ID IN (
 			select citizen_id from certificate_application CA
             where application_status='APPROVED');
 
 -- LEVEL 2
-SELECT * FROM certificate_application 
+SELECT application_id,citizen_id,reference_number FROM certificate_application 
 WHERE application_date>(
 			SELECT min(application_date)
             FROM certificate_application);
 
-SELECT * FROM certificate_application
+SELECT application_id,citizen_id,reference_number FROM certificate_application
 WHERE application_date < (
 		    SELECT MAX(application_date)
 			FROM certificate_application
 );
 
-SELECT * FROM citizen
+SELECT full_name FROM citizen
 WHERE citizen_id IN (
     SELECT citizen_id
     FROM certificate_application
 );
 
-SELECT *
+SELECT full_name
 FROM citizen
 WHERE citizen_id NOT IN (
     SELECT citizen_id
@@ -52,7 +52,7 @@ WHERE citizen_id NOT IN (
     WHERE application_status = 'Approved'
 );
 
-SELECT *
+SELECT full_name
 FROM citizen
 WHERE citizen_id IN (
     SELECT citizen_id
@@ -72,7 +72,7 @@ where certificate_type_id NOT IN (
             from certificate_application
             where application_status='Approved');
 
-select * from certificate_application
+select application_id from certificate_application
 where application_date > (
 			 select avg(application_date)
              from certificate_application);
