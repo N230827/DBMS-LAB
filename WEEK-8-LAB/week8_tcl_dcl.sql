@@ -124,7 +124,8 @@ IDENTIFIED BY 'Clerk@123';
 SELECT USER,Host
 FROM mysql.user 
 WHERE user = 'clerk';
-
+GRANT SELECT ON gram_panchayat_db.approved_applications TO 'clerk'@'localhost';
+GRANT INSERT ON gram_panchayat_db.certificate_application to 'clerk'@'localhost';
 SELECT CURRENT_USER();
 SELECT User,Host
 FROM mysql.user;
@@ -242,3 +243,4 @@ FROM 'officer1'@'localhost';
 SHOW GRANTS FOR 'officer1'@'localhost';
 
 
+GRANT SELECT ON gram_panchayat_db.Approved_Applications TO 'officer1'@'localhost';
