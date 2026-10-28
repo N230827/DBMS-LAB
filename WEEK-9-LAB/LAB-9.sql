@@ -70,8 +70,8 @@ END IF;
 END //
 DELIMITER ;
 CALL check_application_status('Approved');
-DELIMITER //
 
+DELIMITER //
 CREATE FUNCTION get_application_status(p_application_id INT)
 RETURNS VARCHAR(30)
 DETERMINISTIC
@@ -87,7 +87,6 @@ DELIMITER ;
 CALL get_application_status(777);
 
 DELIMITER //
-
 CREATE PROCEDURE display_numbers()
 BEGIN
 DECLARE v_count INT DEFAULT 1;
@@ -101,8 +100,8 @@ END LOOP;
 END //
 DELIMITER ;
 CALL display_numbers;
-DELIMITER // 
- 
+
+DELIMITER //  
  CREATE PROCEDURE classify_application (IN p_application_id INT)
  BEGIN 
  DECLARE v_status VARCHAR(15);
@@ -168,8 +167,6 @@ BEGIN
        SELECT v_application_id AS application_id,
                v_citizen_id AS citizen_id,
                v_status AS application_status;
-
- 
     END LOOP; 
  
     CLOSE application_cursor; 
@@ -197,7 +194,6 @@ BEGIN
                v_status AS application_status;
     END IF;
 END //
-
 DELIMITER ;
 drop procedure find_application;
 CALL find_application(1004);
